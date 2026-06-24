@@ -5,10 +5,12 @@
 
 ---
 
-## The recommended approach: clean, selective transfer
+## Recommended: a mix — transfer select folders directly, keep accounts clean
 
-Because the whole point is to **separate work from personal**, don't blindly copy everything.
-Move only what belongs on the work Mac.
+The sweet spot (and the approach you picked): **directly copy over the specific work folders
+you want**, but **don't bulk-import accounts, logins, or browser sessions** — those get set
+up fresh and clean per docs 01–02. You move *files*, not *identity*. Pick whichever of the
+three methods below is easiest; you can combine them.
 
 ### Option A — through the cloud (simplest, no cables)
 1. On the **Surface**, put the work files you want into **Google Drive** (your work account)
@@ -30,10 +32,11 @@ Both machines on the same Wi-Fi: enable **File Sharing** on the Mac
 
 ---
 
-## The alternative: bulk transfer with Migration Assistant
+## Optional: Migration Assistant for bulk files
 
-If you'd rather just pull *everything* across automatically and sort it later, Apple makes a
-Windows tool for this.
+If you have a *lot* of files and want them pulled across in one shot, Apple makes a Windows
+tool for this. Fine to use as part of your mix for **files** — just still set up accounts and
+logins fresh (docs 01–02) rather than relying on what it imports.
 
 1. On the **Surface**, download **Windows Migration Assistant** from Apple (get the version
    matching your macOS) and run it.

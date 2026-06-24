@@ -98,7 +98,11 @@ PHASE 2 — Migrate accounts
 - Step "Long-tail tools (Lyft, etc.)":
   callout info: "Unlike the AI apps, most services let you change the email and KEEP all data."
   Body (repeatable pattern): log in > Settings > change email to work > verify > update
-  password manager > migrate its 2FA > mark Done. Skip anything you marked 'Keep'.
+  password manager > migrate its 2FA > mark Done. Skip anything you marked 'Keep' (e.g.
+  personal banking — just keep its login + 2FA in your password manager).
+- Step "Work SaaS (Notion, Slack, Figma)": Either change the account email to work, OR have a
+  team admin invite your work email to the existing workspace. Reconnect tools that plug into
+  Claude (Notion, Supabase, Vercel) to their work versions.
 
 PHASE 3 — Phone, Apple ID & 2FA
 - Step "Decide your phone's Apple ID":

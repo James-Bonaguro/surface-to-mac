@@ -80,6 +80,8 @@ progress tracking.
 - [ ] ChatGPT: new work account → subscribe → install
 - [ ] GitHub: add + verify work email, set as primary/commit email
 - [ ] Long-tail tools: change email to work, one by one
+- [ ] Work SaaS (Notion, Slack, Figma…): swap email or join via work invite
+- [ ] Keep-personal accounts (banking…): leave on personal lane, save login + 2FA
 
 ### Phase 3 — Phone & 2FA
 - [ ] Decide Apple ID strategy (recommended: keep personal Apple ID)
