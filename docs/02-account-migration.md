@@ -146,7 +146,19 @@ and orders stay put.
 6. Mark **Done** in your table.
 
 **Skip the ones you marked "Keep"** — leave purely personal services on the personal Gmail /
-Surface lane.
+Surface lane. For sensitive ones like **personal banking**, don't move them to work at all —
+just make sure their login + 2FA live in your password manager so you can reach them from
+either machine.
+
+### Work SaaS (Notion, Slack, Figma, and friends)
+
+Team tools usually behave one of two ways:
+- **Email-swap**, exactly like above — change the account email to work, keep your data; or
+- **Invite-based** — your team has a workspace and an admin just invites your **work** email
+  (Slack, Notion team plans, and Figma orgs often work this way). Ask your admin if unsure.
+
+Reconnect anything that plugs into Claude (Notion, Supabase, Vercel, etc.) to its **work**
+version when you set up [doc 05](05-claude-code-on-mac.md).
 
 > 🤖 Want help working the list? Ask me and I can pull your inventory from Gmail and we can go
 > service-by-service together.
@@ -160,6 +172,8 @@ Surface lane.
 - [ ] **Google**: mail/contacts/calendar imported to work; Drive/Photos handled; forwarding on
 - [ ] **GitHub**: work email added, verified, set primary + commit email
 - [ ] Long-tail services swapped to work email, row by row
+- [ ] Work SaaS (Notion, Slack, Figma…) swapped to work email or joined via work invite
+- [ ] Personal-only accounts (banking, etc.) left on the personal lane, login + 2FA saved
 - [ ] Every migrated login updated in the password manager
 
 Next: **[03 — Data & files](03-data-and-files.md)**.
