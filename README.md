@@ -52,6 +52,7 @@ lock you out or lose data is gated behind a safety-net step that comes first.
 | 03 | [Data & files](docs/03-data-and-files.md) | Moving files Surface→Mac; consolidating Google Drive/Photos onto the work account. |
 | 04 | [Phone, Apple ID & 2FA](docs/04-phone-apple-id-2fa.md) | Which Apple ID to use on your phone, and the two-factor-auth trap that locks people out. |
 | 05 | [Claude Code & dev setup on the Mac](docs/05-claude-code-on-mac.md) | Rebuild your developer + Claude Code environment so you can keep doing what you do today. |
+| ★ | [Account inventory](docs/account-inventory.md) | **Pre-filled from your Gmail** — every service found, sorted into Work / Work SaaS / Keep-personal. Your working list for doc 02. |
 
 There's also a **[Codex prompt](prompts/codex-app-prompt.md)** — paste it into Codex and it
 will build you a small interactive checklist app that walks you through all of this with
