@@ -8,8 +8,8 @@
 
 1. **You already have a work account: `james@intersectionstrategies.co`** (a Google Workspace
    account — your Gmail is its recovery address). So most of the work below is *re-pointing
-   services at the email you already have*, not creating a new one. Confirm whether you also
-   want Claude/ChatGPT/GitHub under this same domain.
+   services at the email you already have*, not creating a new one. **Confirmed: Claude,
+   ChatGPT, GitHub and the other work tools all go under `@intersectionstrategies.co`.**
 2. **You already use Keeper** as your password manager, and your **new Mac is already ordered**
    (Apple Store order, Jun 22). So [doc 00](00-before-you-touch-anything.md) = "install Keeper
    on the Mac and sign in," not "pick a manager from scratch."
@@ -45,9 +45,9 @@ invite). The ones marked 🟣 also plug into Claude/MCP — reconnect them in [d
 | **Qualtrics** | 🔵 | Surveys — work. |
 | **LinkedIn (Premium)** | 🔵 | Professional — keep on work identity. |
 | **Product Hunt / DEV.to** | 🔵 | Professional communities — low priority. |
-| **Perplexity / Grok (xAI)** | ⚪ | AI tools — decide work vs personal. |
-| **Krea / Adobe Creative Cloud** | ⚪ | Creative — decide if work needs them. |
-| **Microsoft Copilot** | ⚪ | OAuth'd — decide. |
+| **Perplexity / Grok (xAI)** | 🔵 | Move to work. |
+| **Adobe Creative Cloud** | 🔵 | Move to work. |
+| **Krea / Microsoft Copilot** | ⚪ | Still deciding — low priority. |
 
 ---
 
