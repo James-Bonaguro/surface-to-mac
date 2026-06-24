@@ -11,7 +11,7 @@
    services at the email you already have*, not creating a new one. **Confirmed: Claude,
    ChatGPT, GitHub and the other work tools all go under `@intersectionstrategies.co`.**
 2. **You already use Keeper** as your password manager, and your **new Mac is already ordered**
-   (Apple Store order, Jun 22). So [doc 00](00-before-you-touch-anything.md) = "install Keeper
+   (Apple Store order, Jun 22). So [doc 00](00-pre-migration-safety-net.md) = "install Keeper
    on the Mac and sign in," not "pick a manager from scratch."
 
 **Lanes:** 🔵 Work · 🟣 Work SaaS (reconnect to Claude) · 🟢 Keep personal · ⚪ Decide
