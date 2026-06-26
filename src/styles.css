@@ -259,12 +259,14 @@ progress::-moz-progress-bar {
 
 .phase-check {
   display: inline-grid;
-  width: 26px;
+  min-width: 48px;
   height: 26px;
   place-items: center;
-  border-radius: 50%;
+  border-radius: 999px;
   background: var(--green-bg);
   color: var(--green-text);
+  padding: 0 9px;
+  font-size: 0.78rem;
   font-weight: 900;
 }
 
@@ -328,6 +330,24 @@ progress::-moz-progress-bar {
 
 .instruction p + p {
   margin-top: 8px;
+}
+
+.step-checklist {
+  display: grid;
+  gap: 8px;
+  max-width: 900px;
+  margin: 0;
+  padding-left: 58px;
+  color: var(--text);
+}
+
+.step-checklist li {
+  padding-left: 2px;
+}
+
+.step-checklist li::marker {
+  color: var(--accent);
+  font-weight: 800;
 }
 
 .callout,
@@ -478,11 +498,16 @@ progress::-moz-progress-bar {
   }
 
   .instruction,
+  .step-checklist,
   .callout,
   .transfer-callout,
   .command-list {
     margin-left: 0;
     padding-left: 0;
+  }
+
+  .step-checklist {
+    padding-left: 20px;
   }
 
   .transfer-callout {

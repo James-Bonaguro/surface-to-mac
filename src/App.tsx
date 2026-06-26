@@ -74,7 +74,7 @@ function App() {
       <header className="hero">
         <div className="hero-copy">
           <p className="product-label">Local checklist</p>
-          <h1>Surface → Mac Migration Assistant</h1>
+          <h1>Surface to Mac Migration Assistant</h1>
           <p className="hero-text">
             Walk through the migration in order while keeping work and personal identities
             separate.
@@ -126,12 +126,12 @@ function App() {
                   <span className="phase-title">{phase.title}</span>
                 </span>
                 <span className="phase-meta">
-                  {phaseComplete && <span className="phase-check" aria-label="Phase complete">✓</span>}
+                  {phaseComplete && <span className="phase-check" aria-label="Phase complete">Done</span>}
                   <span>
                     {doneInPhase} / {phase.steps.length} done
                   </span>
                   <span className="chevron" aria-hidden="true">
-                    {isExpanded ? "−" : "+"}
+                    {isExpanded ? "-" : "+"}
                   </span>
                 </span>
               </button>
@@ -175,6 +175,14 @@ function ChecklistStep({ checked, onChange, step }: ChecklistStepProps) {
       </label>
 
       {step.body && <InstructionText text={step.body} />}
+
+      {step.checklist && (
+        <ul className="step-checklist">
+          {step.checklist.map((item) => (
+            <li key={item}>{renderInlineLinks(item)}</li>
+          ))}
+        </ul>
+      )}
 
       {step.callouts?.map((callout, index) => (
         <CalloutBox callout={callout} key={`${step.id}-callout-${index}`} />
