@@ -1,0 +1,632 @@
+<title>Pull Day — Workout Prep</title>
+<style>
+  :root {
+    --bg: #f2f3f6;
+    --card: #ffffff;
+    --line: #e1e4ea;
+    --text: #1b202a;
+    --muted: #646c7b;
+    --accent: #3a5fe5;
+    --accent-soft: #e6ebfd;
+    --done: #2e9963;
+    --done-soft: #e3f2ea;
+    --rest: #b26f14;
+    --rest-soft: #fdf3e2;
+    --chip: #eceef3;
+    --shadow: 0 8px 24px rgba(20, 26, 40, 0.10);
+  }
+  @media (prefers-color-scheme: dark) {
+    :root {
+      --bg: #13161c;
+      --card: #1b2028;
+      --line: #2a303b;
+      --text: #e7eaf0;
+      --muted: #98a0af;
+      --accent: #6e8bff;
+      --accent-soft: #232c45;
+      --done: #46bd7e;
+      --done-soft: #1d3229;
+      --rest: #e8a94b;
+      --rest-soft: #362a17;
+      --chip: #242a34;
+      --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+    }
+  }
+  :root[data-theme="light"] {
+    --bg: #f2f3f6;
+    --card: #ffffff;
+    --line: #e1e4ea;
+    --text: #1b202a;
+    --muted: #646c7b;
+    --accent: #3a5fe5;
+    --accent-soft: #e6ebfd;
+    --done: #2e9963;
+    --done-soft: #e3f2ea;
+    --rest: #b26f14;
+    --rest-soft: #fdf3e2;
+    --chip: #eceef3;
+    --shadow: 0 8px 24px rgba(20, 26, 40, 0.10);
+  }
+  :root[data-theme="dark"] {
+    --bg: #13161c;
+    --card: #1b2028;
+    --line: #2a303b;
+    --text: #e7eaf0;
+    --muted: #98a0af;
+    --accent: #6e8bff;
+    --accent-soft: #232c45;
+    --done: #46bd7e;
+    --done-soft: #1d3229;
+    --rest: #e8a94b;
+    --rest-soft: #362a17;
+    --chip: #242a34;
+    --shadow: 0 8px 24px rgba(0, 0, 0, 0.45);
+  }
+
+  * { box-sizing: border-box; }
+  html { background: var(--bg); }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--text);
+    font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+    line-height: 1.45;
+    -webkit-font-smoothing: antialiased;
+  }
+  main {
+    max-width: 34rem;
+    margin: 0 auto;
+    padding: 1.5rem 1rem 9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.875rem;
+  }
+
+  /* ---------- header ---------- */
+  header { padding: 0.25rem 0.25rem 0.5rem; }
+  .eyebrow {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  h1 {
+    margin: 0.1rem 0 0.15rem;
+    font-size: 2.1rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    text-wrap: balance;
+  }
+  .sub { margin: 0; color: var(--muted); font-size: 0.95rem; }
+
+  .progress-wrap {
+    margin-top: 0.9rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.35rem;
+  }
+  .progress-label {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    color: var(--muted);
+    font-variant-numeric: tabular-nums;
+  }
+  .progress-label .count { font-weight: 700; color: var(--text); }
+  .bar {
+    height: 0.45rem;
+    border-radius: 999px;
+    background: var(--chip);
+    overflow: hidden;
+  }
+  .bar > div {
+    height: 100%;
+    width: 0%;
+    border-radius: 999px;
+    background: var(--accent);
+    transition: width 0.3s ease, background 0.3s ease;
+  }
+  .bar.complete > div { background: var(--done); }
+
+  /* ---------- warm-up ---------- */
+  details.warmup {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 0;
+  }
+  details.warmup summary {
+    cursor: pointer;
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.85rem 1rem;
+    font-weight: 650;
+    font-size: 0.95rem;
+  }
+  details.warmup summary::-webkit-details-marker { display: none; }
+  details.warmup summary .tag {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+  }
+  details.warmup ul {
+    margin: 0;
+    padding: 0 1rem 0.9rem 2rem;
+    color: var(--muted);
+    font-size: 0.9rem;
+  }
+  details.warmup li { margin: 0.2rem 0; }
+
+  /* ---------- exercise cards ---------- */
+  .card {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: 14px;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+  .card.done { border-color: var(--done); }
+  .card-top {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 0.75rem;
+  }
+  .ex-name { margin: 0; font-size: 1.1rem; font-weight: 700; letter-spacing: -0.01em; }
+  .ex-alt {
+    display: inline-block;
+    margin-top: 0.15rem;
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--accent);
+  }
+  .ex-meta {
+    color: var(--muted);
+    font-size: 0.86rem;
+    font-variant-numeric: tabular-nums;
+  }
+  .ex-cue { color: var(--muted); font-size: 0.86rem; margin: 0; }
+
+  .swap-btn {
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--accent);
+    font: inherit;
+    font-size: 0.8rem;
+    font-weight: 650;
+    padding: 0.4rem 0.7rem;
+    border-radius: 999px;
+    cursor: pointer;
+  }
+  .swap-btn:hover { background: var(--accent-soft); }
+
+  .sets {
+    display: flex;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+  }
+  .set-chip {
+    flex: 1 1 3rem;
+    min-height: 2.9rem;
+    border-radius: 10px;
+    border: 1px solid var(--line);
+    background: var(--chip);
+    color: var(--text);
+    font: inherit;
+    font-weight: 650;
+    font-size: 0.92rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.3rem;
+    transition: background 0.15s ease, border-color 0.15s ease;
+  }
+  .set-chip.on {
+    background: var(--done);
+    border-color: var(--done);
+    color: #fff;
+  }
+  .set-chip:not(.on):hover { border-color: var(--accent); }
+
+  /* ---------- rest bar ---------- */
+  #restbar {
+    position: fixed;
+    left: 0; right: 0; bottom: 0;
+    display: none;
+    justify-content: center;
+    padding: 0.75rem 1rem calc(0.75rem + env(safe-area-inset-bottom, 0px));
+    background: var(--card);
+    border-top: 1px solid var(--line);
+    box-shadow: var(--shadow);
+  }
+  #restbar.show { display: flex; }
+  .rest-inner {
+    width: 100%;
+    max-width: 32rem;
+    display: flex;
+    align-items: center;
+    gap: 0.9rem;
+  }
+  #rest-time {
+    font-family: ui-monospace, "SF Mono", Menlo, Consolas, monospace;
+    font-size: 1.9rem;
+    font-weight: 700;
+    font-variant-numeric: tabular-nums;
+    color: var(--rest);
+    min-width: 4.6rem;
+  }
+  #restbar.go #rest-time { color: var(--done); }
+  .rest-meta { flex: 1; min-width: 0; }
+  .rest-meta .rest-state {
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--rest);
+  }
+  #restbar.go .rest-state { color: var(--done); }
+  .rest-meta .rest-ex {
+    font-size: 0.85rem;
+    color: var(--muted);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .rest-actions { display: flex; gap: 0.5rem; }
+  .rest-actions button {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 650;
+    border-radius: 999px;
+    padding: 0.5rem 0.9rem;
+    cursor: pointer;
+    border: 1px solid var(--line);
+    background: transparent;
+    color: var(--text);
+  }
+  #rest-skip {
+    background: var(--accent);
+    border-color: var(--accent);
+    color: #fff;
+  }
+
+  @keyframes pulse { 50% { opacity: 0.55; } }
+  #restbar.go #rest-time { animation: pulse 1s ease-in-out 3; }
+  @media (prefers-reduced-motion: reduce) {
+    #restbar.go #rest-time { animation: none; }
+    .bar > div { transition: none; }
+  }
+
+  /* ---------- footer ---------- */
+  .footer { display: flex; justify-content: center; padding-top: 0.5rem; }
+  #reset {
+    font: inherit;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--muted);
+    background: none;
+    border: 1px solid var(--line);
+    border-radius: 999px;
+    padding: 0.5rem 1.1rem;
+    cursor: pointer;
+  }
+  #reset:hover { color: var(--text); border-color: var(--muted); }
+
+  button:focus-visible, summary:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+  }
+</style>
+
+<main>
+  <header>
+    <div class="eyebrow" id="date-line">Today</div>
+    <h1>Pull Day</h1>
+    <p class="sub">Back &amp; biceps · ~45 min · full gym</p>
+    <div class="progress-wrap">
+      <div class="progress-label">
+        <span class="count"><span id="done-count">0</span> / <span id="total-count">0</span> sets</span>
+        <span id="progress-note">Tap a set when you finish it</span>
+      </div>
+      <div class="bar" id="bar"><div></div></div>
+    </div>
+  </header>
+
+  <details class="warmup">
+    <summary><span>Warm-up</span><span class="tag">3–4 min</span></summary>
+    <ul>
+      <li>Band pull-aparts — 2 × 15</li>
+      <li>Dead hang — 2 × 20–30 s</li>
+      <li>Lat pulldown, light — 1 × 12 easy</li>
+    </ul>
+  </details>
+
+  <div id="cards"></div>
+
+  <div class="footer">
+    <button id="reset" type="button">Reset session</button>
+  </div>
+</main>
+
+<div id="restbar">
+  <div class="rest-inner">
+    <div id="rest-time">0:00</div>
+    <div class="rest-meta">
+      <div class="rest-state" id="rest-state">Rest</div>
+      <div class="rest-ex" id="rest-ex"></div>
+    </div>
+    <div class="rest-actions">
+      <button id="rest-add" type="button">+30 s</button>
+      <button id="rest-skip" type="button">Skip</button>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+
+  var EXERCISES = [
+    { rest: 120, variants: [
+      { name: 'Barbell row', sets: 4, reps: '6–8', cue: 'Hinge to ~45°, pull to the lower ribs — no torso heave.' },
+      { name: 'Chest-supported DB row', sets: 4, reps: '8–10', cue: 'Chest glued to the pad; squeeze shoulder blades at the top.' },
+      { name: 'T-bar row', sets: 4, reps: '6–8', cue: 'Neutral spine, drive elbows back, control the negative.' }
+    ]},
+    { rest: 90, variants: [
+      { name: 'Lat pulldown', sets: 3, reps: '8–10', cue: 'Drive elbows down and in; pause at the collarbone.' },
+      { name: 'Pull-ups', sets: 3, reps: '6–10', cue: 'Full hang at the bottom, chin over bar — add weight if easy.' },
+      { name: 'Neutral-grip pulldown', sets: 3, reps: '8–10', cue: 'Slight lean back, pull to the upper chest.' }
+    ]},
+    { rest: 90, variants: [
+      { name: 'Seated cable row', sets: 3, reps: '10–12', cue: 'Chest tall; pull to the belly button, don’t shrug.' },
+      { name: 'Single-arm DB row', sets: 3, reps: '10–12 / side', cue: 'Brace on the bench; row toward the hip, not the armpit.' },
+      { name: 'Machine row', sets: 3, reps: '10–12', cue: 'Full stretch forward, 1-second squeeze at the back.' }
+    ]},
+    { rest: 60, variants: [
+      { name: 'Face pull', sets: 3, reps: '12–15', cue: 'Pull to eye level, thumbs back — external rotation at the end.' },
+      { name: 'Rear-delt fly', sets: 3, reps: '12–15', cue: 'Light weight, lead with the pinkies, no momentum.' },
+      { name: 'Band pull-apart', sets: 3, reps: '15–20', cue: 'Straight arms, squeeze the mid-back at full stretch.' }
+    ]},
+    { rest: 60, variants: [
+      { name: 'EZ-bar curl', sets: 3, reps: '8–10', cue: 'Elbows pinned to your sides; control all the way down.' },
+      { name: 'DB curl', sets: 3, reps: '8–10', cue: 'Supinate as you lift; no swinging from the hips.' },
+      { name: 'Cable curl', sets: 3, reps: '10–12', cue: 'Constant tension — don’t rest at the bottom.' }
+    ]},
+    { rest: 60, variants: [
+      { name: 'Hammer curl', sets: 2, reps: '10–12', cue: 'Neutral grip, squeeze at the top, slow negative.' },
+      { name: 'Reverse curl', sets: 2, reps: '10–12', cue: 'Overhand grip, wrists straight, lighter than you think.' },
+      { name: 'Rope hammer curl', sets: 2, reps: '10–12', cue: 'Pull the rope apart slightly as you curl.' }
+    ]}
+  ];
+
+  var KEY = 'workout-prep-pull-v1';
+  var state = load();
+
+  function freshState() {
+    return {
+      variant: EXERCISES.map(function () { return 0; }),
+      done: EXERCISES.map(function (ex) {
+        return ex.variants[0] ? new Array(ex.variants[0].sets).fill(false) : [];
+      })
+    };
+  }
+  function load() {
+    try {
+      var raw = localStorage.getItem(KEY);
+      if (!raw) return freshState();
+      var s = JSON.parse(raw);
+      if (!s || !Array.isArray(s.variant) || !Array.isArray(s.done) ||
+          s.variant.length !== EXERCISES.length || s.done.length !== EXERCISES.length) {
+        return freshState();
+      }
+      return s;
+    } catch (e) { return freshState(); }
+  }
+  function save() {
+    try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {}
+  }
+
+  function currentVariant(i) {
+    return EXERCISES[i].variants[state.variant[i] % EXERCISES[i].variants.length];
+  }
+  function fmt(sec) {
+    var m = Math.floor(sec / 60), s = sec % 60;
+    return m + ':' + (s < 10 ? '0' : '') + s;
+  }
+
+  /* ---------- render ---------- */
+  var cardsEl = document.getElementById('cards');
+  cardsEl.style.display = 'flex';
+  cardsEl.style.flexDirection = 'column';
+  cardsEl.style.gap = '0.875rem';
+
+  function render() {
+    cardsEl.textContent = '';
+    EXERCISES.forEach(function (ex, i) {
+      var v = currentVariant(i);
+      var card = document.createElement('section');
+      card.className = 'card';
+
+      var top = document.createElement('div');
+      top.className = 'card-top';
+      var left = document.createElement('div');
+      var h = document.createElement('h2');
+      h.className = 'ex-name';
+      h.textContent = v.name;
+      left.appendChild(h);
+      if (state.variant[i] % ex.variants.length !== 0) {
+        var alt = document.createElement('span');
+        alt.className = 'ex-alt';
+        alt.textContent = 'Swap for ' + ex.variants[0].name.toLowerCase();
+        left.appendChild(alt);
+      }
+      var meta = document.createElement('div');
+      meta.className = 'ex-meta';
+      meta.textContent = v.sets + ' × ' + v.reps + ' · rest ' + fmt(ex.rest);
+      left.appendChild(meta);
+      top.appendChild(left);
+
+      if (ex.variants.length > 1) {
+        var next = ex.variants[(state.variant[i] + 1) % ex.variants.length];
+        var swap = document.createElement('button');
+        swap.type = 'button';
+        swap.className = 'swap-btn';
+        swap.textContent = '⇄ ' + next.name;
+        swap.setAttribute('aria-label', 'Swap to ' + next.name);
+        swap.addEventListener('click', function () { doSwap(i); });
+        top.appendChild(swap);
+      }
+      card.appendChild(top);
+
+      var cue = document.createElement('p');
+      cue.className = 'ex-cue';
+      cue.textContent = v.cue;
+      card.appendChild(cue);
+
+      var sets = document.createElement('div');
+      sets.className = 'sets';
+      for (var s = 0; s < v.sets; s++) {
+        (function (setIdx) {
+          var chip = document.createElement('button');
+          chip.type = 'button';
+          chip.className = 'set-chip' + (state.done[i][setIdx] ? ' on' : '');
+          chip.setAttribute('aria-pressed', state.done[i][setIdx] ? 'true' : 'false');
+          chip.textContent = state.done[i][setIdx] ? '✓ ' + (setIdx + 1) : 'Set ' + (setIdx + 1);
+          chip.addEventListener('click', function () { toggleSet(i, setIdx, chip); });
+          sets.appendChild(chip);
+        })(s);
+      }
+      card.appendChild(sets);
+      if (state.done[i].length && state.done[i].every(Boolean)) card.classList.add('done');
+      cardsEl.appendChild(card);
+    });
+    updateProgress();
+  }
+
+  function totalSets() {
+    return EXERCISES.reduce(function (n, ex, i) { return n + currentVariant(i).sets; }, 0);
+  }
+  function doneSets() {
+    return state.done.reduce(function (n, arr) {
+      return n + arr.filter(Boolean).length;
+    }, 0);
+  }
+  function updateProgress() {
+    var total = totalSets(), done = doneSets();
+    document.getElementById('done-count').textContent = done;
+    document.getElementById('total-count').textContent = total;
+    var bar = document.getElementById('bar');
+    bar.firstElementChild.style.width = (total ? (done / total) * 100 : 0) + '%';
+    bar.classList.toggle('complete', done === total && total > 0);
+    var note = document.getElementById('progress-note');
+    if (done === total && total > 0) note.textContent = 'Session complete — nice work 💪';
+    else if (done === 0) note.textContent = 'Tap a set when you finish it';
+    else note.textContent = 'Keep it moving';
+  }
+
+  /* ---------- actions ---------- */
+  function toggleSet(i, setIdx, chip) {
+    var nowOn = !state.done[i][setIdx];
+    state.done[i][setIdx] = nowOn;
+    save();
+    chip.classList.toggle('on', nowOn);
+    chip.setAttribute('aria-pressed', nowOn ? 'true' : 'false');
+    chip.textContent = nowOn ? '✓ ' + (setIdx + 1) : 'Set ' + (setIdx + 1);
+    var card = chip.closest('.card');
+    if (card) card.classList.toggle('done', state.done[i].every(Boolean));
+    updateProgress();
+    if (nowOn && doneSets() < totalSets()) {
+      startRest(i, setIdx);
+    } else if (nowOn) {
+      hideRest();
+    }
+  }
+
+  function doSwap(i) {
+    state.variant[i] = (state.variant[i] + 1) % EXERCISES[i].variants.length;
+    state.done[i] = new Array(currentVariant(i).sets).fill(false);
+    save();
+    render();
+  }
+
+  document.getElementById('reset').addEventListener('click', function () {
+    if (!confirm('Clear all progress and swaps for this session?')) return;
+    state = freshState();
+    save();
+    hideRest();
+    render();
+  });
+
+  /* ---------- rest timer ---------- */
+  var restbar = document.getElementById('restbar');
+  var restTime = document.getElementById('rest-time');
+  var restEx = document.getElementById('rest-ex');
+  var restState = document.getElementById('rest-state');
+  var endAt = 0, interval = null, hideTimeout = null;
+  var baseTitle = document.title;
+
+  function startRest(i, setIdx) {
+    var ex = EXERCISES[i], v = currentVariant(i);
+    clearTimers();
+    endAt = Date.now() + ex.rest * 1000;
+    restbar.classList.remove('go');
+    restbar.classList.add('show');
+    restState.textContent = 'Rest';
+    var nextSet = setIdx + 2 <= v.sets ? 'set ' + (setIdx + 2) + ' of ' + v.sets : 'next exercise';
+    restEx.textContent = v.name + ' → ' + nextSet;
+    tick();
+    interval = setInterval(tick, 250);
+  }
+  function tick() {
+    var remaining = Math.max(0, Math.ceil((endAt - Date.now()) / 1000));
+    restTime.textContent = fmt(remaining);
+    if (remaining <= 0) finishRest();
+  }
+  function finishRest() {
+    clearInterval(interval); interval = null;
+    restbar.classList.add('go');
+    restState.textContent = 'Go';
+    restTime.textContent = '0:00';
+    document.title = '✅ Rest done';
+    if (navigator.vibrate) navigator.vibrate([200, 100, 200]);
+    hideTimeout = setTimeout(function () {
+      hideRest();
+    }, 5000);
+  }
+  function hideRest() {
+    clearTimers();
+    restbar.classList.remove('show', 'go');
+    document.title = baseTitle;
+  }
+  function clearTimers() {
+    if (interval) { clearInterval(interval); interval = null; }
+    if (hideTimeout) { clearTimeout(hideTimeout); hideTimeout = null; }
+    document.title = baseTitle;
+  }
+
+  document.getElementById('rest-add').addEventListener('click', function () {
+    if (restbar.classList.contains('go')) return;
+    endAt += 30000;
+    tick();
+  });
+  document.getElementById('rest-skip').addEventListener('click', hideRest);
+
+  /* ---------- date line ---------- */
+  document.getElementById('date-line').textContent =
+    new Date().toLocaleDateString(undefined, { weekday: 'long', month: 'long', day: 'numeric' });
+
+  render();
+})();
+</script>
