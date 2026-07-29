@@ -31,6 +31,5 @@ The detailed migration playbook is still available in `docs/`.
 | 03 | [Data & files](docs/03-data-and-files.md) | Moving files and consolidating Google Drive/Photos. |
 | 04 | [Phone, Apple ID & 2FA](docs/04-phone-apple-id-2fa.md) | Phone Apple ID strategy and the two-factor-auth migration trap. |
 | 05 | [Claude Code & dev setup](docs/05-claude-code-on-mac.md) | Homebrew, Git, SSH, Claude Code, MCP servers, and repo cloning. |
-| Inventory | [Account inventory](docs/account-inventory.md) | Pre-filled account inventory from Gmail, sorted into migration lanes. |
 
 The original Codex build prompt is in [prompts/codex-app-prompt.md](prompts/codex-app-prompt.md).
